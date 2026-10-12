@@ -1,4 +1,4 @@
-# Houston Maternal Health Resources
+# [PROOF OF CONCEPT] Houston Maternal Health Resources
 
 Map-centric dashboard of maternal health resources in Houston / Harris County, built for
 [maternal-health-resources-hou.com](https://maternal-health-resources-hou.com/) (Kinder Institute for Urban Research, Rice University).

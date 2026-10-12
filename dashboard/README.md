@@ -1,4 +1,4 @@
-# Houston Maternal Health Resource Map
+# [PROOF OF CONCEPT] Houston Maternal Health Resource Map
 
 React + MapLibre map of the Community Resource Directory, built to embed in
 maternal-health-resources-hou.com.

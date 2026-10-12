@@ -12,7 +12,7 @@ export const TAB_COLORS = {
 
 const strings = {
   en: {
-    title: 'Houston Maternal Health Resource Map',
+    title: '[PROOF OF CONCEPT] Houston Maternal Health Resource Map',
     tabInView: 'In map view',
     tabLocations: 'Locations',
     tabRegional: 'Houston-wide',
@@ -95,7 +95,7 @@ const strings = {
     },
   },
   es: {
-    title: 'Mapa de Recursos de Salud Materna de Houston',
+    title: '[PRUEBA DE CONCEPTO] Mapa de Recursos de Salud Materna de Houston',
     tabInView: 'En el mapa',
     tabLocations: 'Ubicaciones',
     tabRegional: 'Todo Houston',
