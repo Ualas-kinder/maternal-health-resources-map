@@ -4,8 +4,9 @@ import { loadData, servesZip } from './data.js';
 import { getStrings, initialLang, TABS, TAB_COLORS } from './i18n.js';
 import ProgramCard from './ProgramCard.jsx';
 
-// Centered on the extent of all mapped locations (Hempstead to Deer Park)
-const HOUSTON = { longitude: -95.607, latitude: 29.877, zoom: 9.2 };
+// Houston's outer loop (Beltway 8 / Sam Houston Tollway) plus a margin, fit to any screen size
+const OUTER_LOOP = [[-95.66, 29.59], [-95.14, 29.99]];
+const HOUSTON = { bounds: OUTER_LOOP, fitBoundsOptions: { padding: 40 } };
 const MAP_STYLE = 'https://tiles.openfreemap.org/styles/positron';
 
 export default function App() {
@@ -148,7 +149,7 @@ export default function App() {
   };
 
   const clearZip = () => { setZip(''); setZipInput(''); resetView(); };
-  const resetView = () => { setPinnedLoc(null); mapRef.current?.flyTo({ center: [HOUSTON.longitude, HOUSTON.latitude], zoom: HOUSTON.zoom }); };
+  const resetView = () => { setPinnedLoc(null); mapRef.current?.fitBounds(OUTER_LOOP, { padding: 40, duration: 800 }); };
   const toggleTab = (tab) => setActiveTabs((cur) => (cur.includes(tab) ? cur.filter((x) => x !== tab) : [...cur, tab]));
 
   // ---- render -------------------------------------------------------------
@@ -226,7 +227,11 @@ export default function App() {
             onMouseMove={onMouseMove}
             onMouseLeave={scheduleClose}
             onClick={onClick}
-            onLoad={(e) => setBounds(e.target.getBounds())}
+            onLoad={(e) => {
+              e.target.resize(); // container may not have had its final size when the map was created
+              e.target.fitBounds(OUTER_LOOP, { padding: 40, duration: 0 });
+              setBounds(e.target.getBounds());
+            }}
             onMoveEnd={(e) => setBounds(e.target.getBounds())}
             cooperativeGestures={embedded}
             locale={t.mapLocale}
